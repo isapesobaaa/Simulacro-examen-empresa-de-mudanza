@@ -21,21 +21,12 @@ public class EmpresaMudanza : MonoBehaviour
         public int precioHora = 0;
         public int capacidad = 0;
     void Start() {
-        // VALIDACION DE DATOS
-        if (carga < 100)
-        {
-            Debug.Log("Error: La carga debe ser de al menos 100 kg.");
-            return;
-        }
-
-        if (distancia < 1)
-        {
-            Debug.Log("Error: La distancia debe ser de al menos 1 km.");
-            return;
-        }
-
+       
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        if (!EsValido())
+        {
+            return
+        }
         // SELECCION DE VEHICULO
         if (carga <= 2000)
         {
@@ -85,8 +76,20 @@ public class EmpresaMudanza : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    bool EsValido()
+    {  
+        if (carga < 100)
+        {
+            Debug.Log("Error: La carga debe ser de al menos 100 kg.");
+            return false;
+        }
+
+        if (distancia < 1)
+        {
+            Debug.Log("Error: La distancia debe ser de al menos 1 km.");
+            return false;
+        } 
+        return true;
         
     }
 }
